@@ -920,6 +920,7 @@ jobs:
         with:
           vcpkgGitCommitId: ${{ inputs.vcpkg_commit }}
           vcpkgGitURL: ${{ inputs.vcpkg_url }}
+          vcpkgDirectory: D:\a\v
 
       - name: Inject extra extension config
         if: ${{ inputs.extra_extension_config }}
