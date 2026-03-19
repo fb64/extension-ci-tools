@@ -792,6 +792,15 @@ jobs:
           msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2-2.22.35.msi  /qn
           sleep 60
 
+      - name: Ensure long path enabled
+        shell: powershell
+        run: |
+          Write-Output "Before set"
+          Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled"
+          Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1
+          Write-Output "After set"
+          Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled"
+
       - name: Test AWS cli version
         shell: powershell
         run: |
